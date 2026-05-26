@@ -1,52 +1,76 @@
 ## Goal
 
-Mobile Craft section must **truly pin in the center of the viewport** — exactly as in the attached screenshot (rotate-phone hint centered, `SCROLL · SEQUENCE · 000%` at the bottom edge). The screen stays locked until all four clips have revealed and the playhead reaches 100%, then releases.
+Convert this TanStack Start project from Cloudflare Workers (Lovable's default) to a Vercel SSR deployment via GitHub integration.
 
-The mechanism is the standard `position: sticky` scroll-jacking pattern (same idea as the Reveal/Stoodiora cards example the user pasted): a tall outer wrap + a `100vh` sticky child + scroll-driven progress 0→1.
+## Why you're getting 404: NOT_FOUND on Vercel
 
-## File: `src/components/cinema/Services.tsx`
+Vercel auto-detects Vite and serves only the static `dist/` output. The current build produces a Cloudflare Worker bundle (via `@cloudflare/vite-plugin` baked into `@lovable.dev/vite-tanstack-config`), not Vercel serverless functions. There's no `index.html` at a path Vercel recognizes and no SSR function, so every request 404s.
 
-### 1. Section title moves OUT of the sticky pane on mobile
+## Changes
 
-Right now the title "Four tracks, one cut." + `XXX%` readout is rendered **inside** the sticky child, so it stays glued to the top of the viewport during the entire pin. The screenshot shows no such title — the user wants the pinned content centered, no header bar.
+### 1. Swap the Vite config off Lovable's Cloudflare preset
 
-Change: render the mobile title as a normal (non-sticky) block **above** the sticky wrap, alongside the existing `<Marks>` index strip. It scrolls past naturally, then the sticky pane engages with a clean centered stage.
+Replace `vite.config.ts` to use TanStack Start's Vercel target directly (no `@lovable.dev/vite-tanstack-config`, no `@cloudflare/vite-plugin`):
 
-### 2. Sticky wrap — confirm clean pin
+```ts
+import { defineConfig } from 'vite'
+import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+import viteReact from '@vitejs/plugin-react'
+import tsConfigPaths from 'vite-tsconfig-paths'
+import tailwindcss from '@tailwindcss/vite'
 
-Keep the proven shape:
-
-```tsx
-<div ref={wrapRef} className="md:hidden relative" style={{ height: "520vh" }}>
-  <div className="sticky top-0 h-screen flex flex-col overflow-hidden bg-paper">
-    {/* stage flex-1 */}
-    {/* bottom readout */}
-  </div>
-</div>
+export default defineConfig({
+  plugins: [
+    tsConfigPaths(),
+    tailwindcss(),
+    tanstackStart({ target: 'vercel' }),
+    viteReact(),
+  ],
+})
 ```
 
-- `bg-paper` on the sticky child so the page content behind never bleeds through during the pin.
-- No title row inside. Stage takes `flex-1`. Bottom readout sits in a fixed-height row (`pt-3 pb-5`).
-- Audit ancestors: `<section>` is `md:overflow-hidden` (mobile is fine), `container-x` and the `max-w-[1600px]` wrapper have no `overflow-hidden` on mobile. Sticky will work.
+### 2. Remove Cloudflare-specific files & deps
 
-### 3. Stage layout matches the screenshot
+- Delete `wrangler.jsonc`
+- Delete `src/server.ts` (Cloudflare Worker wrapper — Vercel preset emits its own entry)
+- Simplify `src/start.ts` (keep the error middleware, drop Cloudflare assumptions)
+- `package.json`: remove `@cloudflare/vite-plugin`, `@lovable.dev/vite-tanstack-config`; add `vite-tsconfig-paths` is already there
 
-Inside the stage (`flex-1 relative`):
-- **Phase 1 (0 → 0.16)** — rotate-phone hint centered (`flex items-center justify-center`), exactly as shown.
-- **Phase 1 fade-out (0.16 → 0.24)** — hint fades.
-- **Phase 2 (0.18 → 0.30)** — rotated sequence frame fades in, centered at `top: 50%`, width `58vh`, height `min(80vw, 400px)`.
-- **Phase 3 (0.28 → 0.96)** — playhead sweeps left→right, clips reveal at `0.34 / 0.50 / 0.66 / 0.82`.
+### 3. Add `vercel.json`
 
-### 4. Bottom readout (`SCROLL · SEQUENCE · NNN%`)
+```json
+{
+  "framework": null,
+  "buildCommand": "vite build",
+  "outputDirectory": ".vercel/output"
+}
+```
 
-Stays pinned at the bottom of the sticky pane. Border-top hairline, centered, tabular-nums. Updates live with progress.
+The TanStack Start Vercel preset writes the proper `.vercel/output/` structure (functions + static assets + config.json) so Vercel routes SSR correctly with no extra rewrites.
 
-### 5. Progress measurement — keep current scroll-driven JS
+### 4. Keep root error boundary
 
-The existing `useEffect` that reads `wrapRef.current.getBoundingClientRect()` is the correct approach (mirrors the Reveal/Stoodiora pattern). No change needed — it already drives `progress` 0→1 across the 520vh range.
+`src/routes/__root.tsx` already has `errorComponent` / `notFoundComponent` — no change.
 
-### Out of scope
+### 5. Deployment steps (you do these after I push)
 
-- Loader is unchanged.
-- Desktop timeline is unchanged.
-- No new dependencies; no framer-motion swap — pure CSS sticky + scroll listener already in place.
+1. Connect this Lovable project to GitHub (Plus menu → GitHub → Connect)
+2. In Vercel: New Project → Import the GitHub repo
+3. Leave framework preset as "Other" — `vercel.json` handles it
+4. Deploy
+
+## Trade-offs (confirming you accept these)
+
+- Lovable's **Publish** button will no longer work — this project will only deploy via Vercel + GitHub.
+- The previous Cloudflare-only SSR error wrapper (`src/server.ts` + h3 swallow normalization) is removed. Vercel's Node runtime surfaces SSR errors directly in Vercel logs, so it's not needed.
+- Live preview inside Lovable should still work (Vite dev server is framework-agnostic), but if it breaks, it can be restored.
+
+## Files touched
+
+- ✏️ `vite.config.ts` — rewritten
+- ✏️ `src/start.ts` — simplified
+- ✏️ `package.json` — deps swap
+- ➕ `vercel.json`
+- 🗑️ `wrangler.jsonc`
+- 🗑️ `src/server.ts`
+- 🗑️ `src/lib/error-capture.ts` (Cloudflare-only)
