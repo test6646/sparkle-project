@@ -1,5 +1,6 @@
 {
   "framework": null,
   "buildCommand": "vite build",
-  "outputDirectory": ".vercel/output"
+  "outputDirectory": "dist/client",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
