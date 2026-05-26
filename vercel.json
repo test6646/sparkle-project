@@ -1,0 +1,6 @@
+{
+  "framework": null,
+  "buildCommand": "vite build",
+  "outputDirectory": "dist/client",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
