@@ -1,6 +1,6 @@
 ## Goal
 
-Convert this TanStack Start project from Cloudflare Workers (Lovable's default) to a Vercel SSR deployment via GitHub integration.
+Convert this TanStack Start project from Cloudflare Workers / static Vite output to a Vercel SSR deployment via GitHub integration.
 
 ## Why you're getting 404: NOT_FOUND on Vercel
 
@@ -8,9 +8,9 @@ Vercel auto-detects Vite and serves only the static `dist/` output. The current 
 
 ## Changes
 
-### 1. Swap the Vite config off Lovable's Cloudflare preset
+### 1. Swap the Vite config to TanStack Start + Nitro for Vercel
 
-Replace `vite.config.ts` to use TanStack Start's Vercel target directly (no `@lovable.dev/vite-tanstack-config`, no `@cloudflare/vite-plugin`):
+Use Nitro's Vercel preset. This is the current supported path for TanStack Start SSR on Vercel and writes the Vercel Build Output API structure under `.vercel/output`:
 
 ```ts
 import { defineConfig } from 'vite'
@@ -18,12 +18,14 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
 import tsConfigPaths from 'vite-tsconfig-paths'
 import tailwindcss from '@tailwindcss/vite'
+import { nitro } from 'nitro/vite'
 
 export default defineConfig({
   plugins: [
     tsConfigPaths(),
     tailwindcss(),
-    tanstackStart({ target: 'vercel' }),
+    tanstackStart(),
+    nitro({ preset: 'vercel' }),
     viteReact(),
   ],
 })
@@ -34,19 +36,19 @@ export default defineConfig({
 - Delete `wrangler.jsonc`
 - Delete `src/server.ts` (Cloudflare Worker wrapper — Vercel preset emits its own entry)
 - Simplify `src/start.ts` (keep the error middleware, drop Cloudflare assumptions)
-- `package.json`: remove `@cloudflare/vite-plugin`, `@lovable.dev/vite-tanstack-config`; add `vite-tsconfig-paths` is already there
+- `package.json`: remove `@cloudflare/vite-plugin`, `@lovable.dev/vite-tanstack-config`; add `nitro`
 
 ### 3. Add `vercel.json`
 
 ```json
 {
   "framework": null,
-  "buildCommand": "vite build",
-  "outputDirectory": ".vercel/output"
+  "installCommand": "bun install --frozen-lockfile",
+  "buildCommand": "bun run build"
 }
 ```
 
-The TanStack Start Vercel preset writes the proper `.vercel/output/` structure (functions + static assets + config.json) so Vercel routes SSR correctly with no extra rewrites.
+Nitro writes the proper `.vercel/output/` structure (functions + static assets + config.json) so Vercel routes SSR correctly with no SPA fallback rewrite.
 
 ### 4. Keep root error boundary
 
