@@ -78,6 +78,7 @@ const mobileTimecodes = ["00.00", "AA.AA", "BB.BB", "CC.CC", "DD.DD", "EE.EE", "
 export function Services() {
   return (
     <section id="disciplines" className="relative container-x py-16 md:py-40 md:overflow-hidden" style={{ backgroundColor: "var(--color-paper)" }}>
+      <DiagramPlate rule="asymmetry" fig="FIG. 04" label="ASYMMETRIC WEIGHT" position="top-right" size={200} />
       <div className="mx-auto max-w-[1280px] relative">
         <Marks index="R04" label="CRAFT · TIMELINE" meta="Four tracks · one sequence" />
 

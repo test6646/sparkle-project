@@ -1,5 +1,6 @@
 import { Marks } from "./Marks";
 import { Reveal } from "./Reveal";
+import { DiagramPlate } from "./DiagramPlate";
 
 type Item = { name: string; spec: string };
 type Group = { code: string; cat: string; tone: string; items: Item[] };
@@ -49,6 +50,7 @@ const focals = [24, 50, 85];
 export function Gear() {
   return (
     <section id="kit" className="relative container-x py-24 md:py-40 overflow-hidden" style={{ backgroundColor: "var(--color-paper)" }}>
+      <DiagramPlate rule="balance" fig="FIG. 07" label="BALANCE · KIT INDEX" position="top-right" size={200} />
       <div className="mx-auto max-w-[1400px] relative">
         <Marks index="R07" label="KIT · WORKING SET" meta="What I reach for · regularly" />
 
