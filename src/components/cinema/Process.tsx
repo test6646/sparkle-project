@@ -79,7 +79,7 @@ export function Process() {
       id="process"
       ref={wrapRef}
       className="relative container-x"
-      style={{ height: "420svh" }}
+      style={{ height: "420svh", backgroundColor: "var(--color-paper)" }}
     >
       <div
         ref={stickyRef}
