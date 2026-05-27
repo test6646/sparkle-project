@@ -83,10 +83,17 @@ export function Services() {
 
         {/* Title — shared (desktop flex / mobile block above the sticky pin) */}
         <div className="mt-10 md:mt-14 flex md:items-end md:justify-between gap-6 md:gap-8 flex-wrap">
-          <h2 className="display text-ink max-w-3xl" style={{ fontSize: "clamp(2.2rem, 5vw, 4.2rem)", lineHeight: 1.02 }}>
-            Four tracks,
-            <span className="editorial italic gold-grad"> one cut.</span>
-          </h2>
+          <div className="max-w-3xl">
+            <h2 className="display text-ink" style={{ fontSize: "clamp(2.2rem, 5vw, 4.2rem)", lineHeight: 1.02 }}>
+              Four tracks,
+              <span className="editorial italic gold-grad"> one cut.</span>
+            </h2>
+            <p className="mt-4 text-ink-mute max-w-xl" style={{ fontSize: "clamp(1rem, 1.2vw, 1.15rem)", lineHeight: 1.55 }}>
+              Cinematography, editing, colour, and direction — each a discipline,
+              woven into one continuous frame. Every project is built inside this
+              timeline from the first wide shot to the final grade.
+            </p>
+          </div>
           <div className="cap flex items-center gap-3">
             <span className="flex items-center gap-1.5"><span className="w-2 h-2 inline-block" style={{background: toneBg.ink}} /> CINE</span>
             <span className="flex items-center gap-1.5"><span className="w-2 h-2 inline-block" style={{background: toneBg.gold}} /> CUT</span>
