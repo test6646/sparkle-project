@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Marks } from "./Marks";
+import { CompositionBackdrop } from "./CompositionBackdrop";
 
 const chapters = [
   {
@@ -81,6 +82,7 @@ export function Process() {
       className="relative container-x"
       style={{ height: "420svh", backgroundColor: "var(--color-paper-deep)" }}
     >
+      <CompositionBackdrop rule="leading-lines" />
       <div
         ref={stickyRef}
         className="sticky overflow-hidden"
