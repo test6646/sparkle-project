@@ -83,10 +83,17 @@ export function Services() {
 
         {/* Title — shared (desktop flex / mobile block above the sticky pin) */}
         <div className="mt-10 md:mt-14 flex md:items-end md:justify-between gap-6 md:gap-8 flex-wrap">
-          <h2 className="display text-ink max-w-3xl" style={{ fontSize: "clamp(2.2rem, 5vw, 4.2rem)", lineHeight: 1.02 }}>
-            Four tracks,
-            <span className="editorial italic gold-grad"> one cut.</span>
-          </h2>
+          <div className="max-w-3xl">
+            <h2 className="display text-ink" style={{ fontSize: "clamp(2.2rem, 5vw, 4.2rem)", lineHeight: 1.02 }}>
+              Four tracks,
+              <span className="editorial italic gold-grad"> one cut.</span>
+            </h2>
+            <p className="mt-4 text-ink-mute max-w-xl" style={{ fontSize: "clamp(1rem, 1.2vw, 1.15rem)", lineHeight: 1.55 }}>
+              Cinematography, editing, colour, and direction — each a discipline,
+              woven into one continuous frame. Every project is built inside this
+              timeline from the first wide shot to the final grade.
+            </p>
+          </div>
           <div className="cap flex items-center gap-3">
             <span className="flex items-center gap-1.5"><span className="w-2 h-2 inline-block" style={{background: toneBg.ink}} /> CINE</span>
             <span className="flex items-center gap-1.5"><span className="w-2 h-2 inline-block" style={{background: toneBg.gold}} /> CUT</span>
@@ -96,11 +103,6 @@ export function Services() {
 
         {/* ============ DESKTOP TIMELINE ============ */}
         <div className="hidden md:block mt-14 border border-ink/20 bg-paper-fold/50">
-          {/* Top bar */}
-          <div className="flex items-center justify-between px-4 py-2.5 border-b border-ink/20 cap">
-            <span className="cap-gold">SEQUENCE · MAIN</span>
-            <span className="tabular-nums">A007</span>
-          </div>
 
           {/* Ruler */}
           <div className="relative h-10 border-b border-ink/20 flex items-end" style={{ paddingLeft: "clamp(160px,18vw,230px)", paddingRight: "clamp(16px,2vw,28px)" }}>
@@ -116,7 +118,7 @@ export function Services() {
                 <span
                   key={tc}
                   className="absolute bottom-3 cap tabular-nums text-ink-mute"
-                  style={{ left: `${(i / (timecodes.length - 1)) * 100}%`, transform: "translateX(-50%)", fontSize: 9 }}
+                  style={{ left: `${(i / (timecodes.length - 1)) * 100}%`, transform: "translateX(-50%)", fontSize: 10 }}
                 >
                   {tc}
                 </span>
@@ -134,9 +136,9 @@ export function Services() {
                 <li className="grid grid-cols-[clamp(160px,18vw,230px)_1fr] border-b border-ink/15 last:border-0">
                   <div className="px-4 py-5 pr-6 border-r border-ink/15 bg-paper/40">
                     <div className="flex items-center justify-end">
-                      <span className="cap text-ink/55 font-bold" style={{ fontSize: 9 }}>{t.kind}{t.n}</span>
+                      <span className="cap text-ink/55 font-bold" style={{ fontSize: 10 }}>{t.kind}{t.n}</span>
                     </div>
-                    <div className="display text-ink mt-2 pr-2" style={{ fontSize: "clamp(0.95rem, 1.4vw, 1.2rem)", lineHeight: 1.1 }}>
+                    <div className="display text-ink mt-2 pr-2" style={{ fontSize: "clamp(1.05rem, 1.5vw, 1.35rem)", lineHeight: 1.1 }}>
                       {t.name}
                     </div>
                   </div>
@@ -164,7 +166,7 @@ export function Services() {
                         <span className="absolute left-0 top-0 bottom-0 w-[2px] bg-black/40" />
                         <span className="absolute right-0 top-0 bottom-0 w-[2px] bg-black/40" />
                         <div className="absolute inset-0 flex items-center px-2.5">
-                          <span className="cap truncate" style={{ fontSize: 9, color: "inherit", letterSpacing: "0.22em" }}>
+                          <span className="cap truncate" style={{ fontSize: 10, color: "inherit", letterSpacing: "0.22em" }}>
                             {c.label}
                           </span>
                         </div>
@@ -176,10 +178,6 @@ export function Services() {
             ))}
           </ul>
 
-          <div className="flex items-center justify-between px-4 py-2.5 border-t border-ink/20 cap">
-            <span className="cap-gold">FOUR TRACKS · ONE CUT</span>
-            <span className="tabular-nums">04 / 04</span>
-          </div>
         </div>
 
         {/* ============ MOBILE TIMELINE — ROTATED -90°, SCROLL-REVEAL ============ */}
