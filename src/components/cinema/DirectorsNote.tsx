@@ -14,9 +14,8 @@ export function DirectorsNote() {
       id="about"
       className="relative container-x overflow-hidden flex flex-col"
       style={{
-        minHeight: "100svh",
-        paddingTop: "clamp(72px, 10vh, 110px)",
-        paddingBottom: "clamp(48px, 7vh, 80px)",
+        paddingTop: "clamp(48px, 6vh, 72px)",
+        paddingBottom: "clamp(32px, 4vh, 56px)",
       }}
     >
       {/* ===== Backdrop — light, hero-family ===== */}
@@ -92,17 +91,25 @@ export function DirectorsNote() {
               <p
                 className="mt-7 md:mt-9 editorial text-ink/90 max-w-2xl"
                 style={{
-                  fontSize: "clamp(20px, 1.85vw, 26px)",
-                  lineHeight: 1.55,
+                  fontSize: "clamp(19px, 1.7vw, 24px)",
+                  lineHeight: 1.6,
                   letterSpacing: "-0.005em",
                   fontWeight: 400,
                 }}
               >
                 I came to cinematography by accident, in the late afternoon,
                 looking for somewhere quiet to think — and stayed because the
-                light kept changing. My work lives between the camera and the
-                cut: <span className="italic text-ink">shot like an editor, edited like a cinematographer,</span> for
-                the breath and silence between two takes.
+                light kept changing. What began as a borrowed camera in a
+                rented room became a discipline: a way of watching the world
+                long enough for it to reveal its own grammar. My work lives
+                between the camera and the cut —
+                <span className="italic text-ink"> shot like an editor, edited like a cinematographer,</span> built
+                for the breath and silence between two takes. I chase the hour
+                before language arrives, the gesture before it knows it is
+                being seen, the frame that holds a feeling without naming it.
+                Every film I make is a small argument for patience — for
+                trusting the room, the face, the weather, and the quiet
+                arithmetic of light.
               </p>
             </Reveal>
 
@@ -159,9 +166,8 @@ export function DirectorsNote() {
         </div>
 
         {/* Footer hairline */}
-        <div className="mt-10 md:mt-14 flex items-end justify-between gap-6 pt-3 border-t border-ink/15">
+        <div className="mt-8 md:mt-10 flex items-end justify-between gap-6 pt-3 border-t border-ink/15">
           <span className="cap">↓ Continue</span>
-          <span className="cap cap-gold">A07 · END SHEET</span>
         </div>
       </div>
     </section>
