@@ -103,11 +103,6 @@ export function Services() {
 
         {/* ============ DESKTOP TIMELINE ============ */}
         <div className="hidden md:block mt-14 border border-ink/20 bg-paper-fold/50">
-          {/* Top bar */}
-          <div className="flex items-center justify-between px-4 py-2.5 border-b border-ink/20 cap">
-            <span className="cap-gold">SEQUENCE · MAIN</span>
-            <span className="tabular-nums">A007</span>
-          </div>
 
           {/* Ruler */}
           <div className="relative h-10 border-b border-ink/20 flex items-end" style={{ paddingLeft: "clamp(160px,18vw,230px)", paddingRight: "clamp(16px,2vw,28px)" }}>
@@ -183,10 +178,6 @@ export function Services() {
             ))}
           </ul>
 
-          <div className="flex items-center justify-between px-4 py-2.5 border-t border-ink/20 cap">
-            <span className="cap-gold">FOUR TRACKS · ONE CUT</span>
-            <span className="tabular-nums">04 / 04</span>
-          </div>
         </div>
 
         {/* ============ MOBILE TIMELINE — ROTATED -90°, SCROLL-REVEAL ============ */}
