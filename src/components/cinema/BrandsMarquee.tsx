@@ -90,7 +90,7 @@ export function BrandsMarquee() {
   const rowB = brands.filter((_, i) => i % 2 === 1);
 
   return (
-    <section className="relative py-20 md:py-28 border-y border-gold/15 overflow-hidden bg-paper-deep">
+    <section className="relative py-20 md:py-28 border-y border-gold/15 overflow-hidden bg-paper">
       {/* Backdrop */}
       <div aria-hidden className="absolute inset-0 pointer-events-none">
         <div
@@ -168,7 +168,7 @@ export function BrandsMarquee() {
           className="pointer-events-none absolute inset-y-0 left-0 w-32 md:w-56 z-10"
           style={{
             background:
-              "linear-gradient(to right, var(--color-paper-deep), transparent)",
+              "linear-gradient(to right, var(--color-paper), transparent)",
           }}
         />
         <div
@@ -176,7 +176,7 @@ export function BrandsMarquee() {
           className="pointer-events-none absolute inset-y-0 right-0 w-32 md:w-56 z-10"
           style={{
             background:
-              "linear-gradient(to left, var(--color-paper-deep), transparent)",
+              "linear-gradient(to left, var(--color-paper), transparent)",
           }}
         />
 
