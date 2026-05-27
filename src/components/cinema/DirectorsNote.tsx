@@ -1,6 +1,6 @@
 import { Marks } from "./Marks";
 import { Reveal } from "./Reveal";
-import { DiagramPlate } from "./DiagramPlate";
+import { CompositionBackdrop } from "./CompositionBackdrop";
 
 const stats: Array<[string, string]> = [
   ["YEARS EXPERIENCE", "08+"],
@@ -20,9 +20,9 @@ export function DirectorsNote() {
         backgroundColor: "var(--color-paper)",
       }}
     >
-      <DiagramPlate rule="golden" fig="FIG. 01" label="GOLDEN MEAN · φ" position="top-right" size={200} />
       {/* ===== Backdrop — light, hero-family ===== */}
       <div aria-hidden className="absolute inset-0 pointer-events-none">
+        <CompositionBackdrop rule="golden" />
         <div
           className="absolute inset-0 opacity-[0.16]"
           style={{

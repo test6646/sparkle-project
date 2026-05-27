@@ -7,7 +7,7 @@ import lamp from "@/assets/frame-lamp.jpg";
 import fog from "@/assets/frame-fog.jpg";
 import { Marks } from "./Marks";
 import { Reveal } from "./Reveal";
-import { DiagramPlate } from "./DiagramPlate";
+import { CompositionBackdrop } from "./CompositionBackdrop";
 
 
 type Film = {
@@ -299,7 +299,7 @@ export function SelectedWork() {
 
   return (
     <section id="work" className="relative container-x py-24 md:py-32" style={{ backgroundColor: "var(--color-paper-deep)" }}>
-      <DiagramPlate rule="thirds" fig="FIG. 02" label="RULE OF THIRDS" position="top-right" size={210} />
+      <CompositionBackdrop rule="thirds" />
       <div className="mx-auto max-w-[1500px]">
         <Marks index="R02" label="SELECTED WORK" meta="2023 → 2026 · 5 frames" />
 

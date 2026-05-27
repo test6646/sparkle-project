@@ -18,7 +18,7 @@ interface Props {
  * Default opacity ~0.05 (whisper). `visible` raises it to ~0.18.
  */
 export function CompositionBackdrop({ rule, visible = false, className = "" }: Props) {
-  const opacity = visible ? 0.18 : 0.055;
+  const opacity = visible ? 0.18 : 0.09;
   return (
     <svg
       aria-hidden
