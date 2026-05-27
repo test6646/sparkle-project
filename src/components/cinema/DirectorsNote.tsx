@@ -104,12 +104,9 @@ export function DirectorsNote() {
                 long enough for it to reveal its own grammar. My work lives
                 between the camera and the cut —
                 <span className="italic text-ink"> shot like an editor, edited like a cinematographer,</span> built
-                for the breath and silence between two takes. I chase the hour
-                before language arrives, the gesture before it knows it is
-                being seen, the frame that holds a feeling without naming it.
-                Every film I make is a small argument for patience — for
-                trusting the room, the face, the weather, and the quiet
-                arithmetic of light.
+                for the breath and silence between two takes. Every film I make
+                is a small argument for patience — for trusting the room, the
+                face, the weather, and the quiet arithmetic of light.
               </p>
             </Reveal>
 
