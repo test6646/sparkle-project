@@ -202,7 +202,6 @@ function MobileTimeline() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const pctRef = useRef<HTMLSpanElement>(null);
-  const pctRef2 = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const el = wrapRef.current;
@@ -226,7 +225,6 @@ function MobileTimeline() {
       target.style.setProperty("--p", p.toFixed(4));
       const pct = String(Math.round(p * 100)).padStart(3, "0");
       if (pctRef.current) pctRef.current.textContent = pct + "%";
-      if (pctRef2.current) pctRef2.current.textContent = pct;
     };
     const schedule = () => {
       if (raf) return;
@@ -254,11 +252,22 @@ function MobileTimeline() {
     <div ref={wrapRef} className="md:hidden relative" style={{ height: "440svh" }}>
       <div
         ref={stickyRef}
-        className="sticky flex flex-col overflow-hidden bg-paper mx-auto"
-        style={{ top: 0, height: "100svh", width: "min(84vw, 440px)", ["--p" as string]: "0" } as React.CSSProperties}
+        className="sticky flex items-center justify-center overflow-hidden bg-paper mx-auto"
+        style={{
+          top: 0,
+          height: "100svh",
+          width: "100%",
+          ["--p" as string]: "0",
+          // Outer/inner share the SAME visual rectangle.
+          // --oh = visual height of the rotated frame, --ow = visual width.
+          ["--oh" as string]: "min(82svh, calc(86vw * 1.6))",
+          ["--ow" as string]: "calc(var(--oh) / 1.6)",
+        } as React.CSSProperties}
       >
-
-        <div className="relative flex-1">
+        <div
+          className="relative"
+          style={{ width: "var(--ow)", height: "var(--oh)" }}
+        >
 
           {/* ============ PHASE 1 · ROTATE-PHONE HINT ============ */}
           <div
@@ -317,8 +326,9 @@ function MobileTimeline() {
             className="absolute left-1/2 border border-ink/20 bg-paper-fold/60 flex flex-col shadow-[0_20px_60px_-30px_rgba(0,0,0,0.35)]"
             style={{
               top: "50%",
-              width: "min(102svh, 128vw)",
-              height: "min(78vw, 410px)",
+              // pre-rotate: width = visual height, height = visual width
+              width: "var(--oh)",
+              height: "var(--ow)",
               transform: `translate(-50%, -50%) rotate(90deg) scale(calc(0.96 + ${frameP} * 0.04))`,
               transformOrigin: "center center",
               opacity: frameP as unknown as number,
@@ -439,16 +449,6 @@ function MobileTimeline() {
             </div>
 
           </div>
-        </div>
-
-        {/* Bottom readout */}
-        <div className="pt-3 pb-5 border-t border-ink/10 flex items-center justify-center">
-          <span
-            className="cap text-ink-mute tabular-nums"
-            style={{ fontSize: 9.5, letterSpacing: "0.32em" }}
-          >
-            SCROLL · <span ref={pctRef2}>000</span>%
-          </span>
         </div>
       </div>
     </div>
