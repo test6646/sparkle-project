@@ -53,7 +53,7 @@
   /* Dark vintage paper surfaces — aged cinematic archive */
   --paper:       oklch(0.865 0.030 88);
   --paper-deep:  oklch(0.805 0.034 84);
-  --paper-fold:  oklch(0.905 0.024 90);
+  --paper-fold:  oklch(0.875 0.034 76);
 
   /* Ink system — rich printed black */
   --ink:         oklch(0.17 0.014 58);
