@@ -118,7 +118,7 @@ export function Services() {
                 <span
                   key={tc}
                   className="absolute bottom-3 cap tabular-nums text-ink-mute"
-                  style={{ left: `${(i / (timecodes.length - 1)) * 100}%`, transform: "translateX(-50%)", fontSize: 9 }}
+                  style={{ left: `${(i / (timecodes.length - 1)) * 100}%`, transform: "translateX(-50%)", fontSize: 10 }}
                 >
                   {tc}
                 </span>
