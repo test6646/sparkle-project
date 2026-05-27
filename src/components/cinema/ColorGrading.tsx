@@ -133,7 +133,7 @@ export function ColorGrading() {
   };
 
   return (
-    <section className="relative container-x py-28 md:py-40 bg-paper-deep/40 overflow-hidden">
+    <section className="relative container-x py-28 md:py-40 overflow-hidden" style={{ backgroundColor: "var(--color-paper-deep)" }}>
       <div className="absolute inset-0 max-w-[1400px] mx-auto"><CompositionBackdrop rule="symmetry" /></div>
       <div className="mx-auto max-w-[1400px] relative">
         <Marks index="R06" label="COLOR GRADING" meta={current.meta} />

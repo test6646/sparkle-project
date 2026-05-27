@@ -77,7 +77,7 @@ const mobileTimecodes = ["00.00", "AA.AA", "BB.BB", "CC.CC", "DD.DD", "EE.EE", "
 
 export function Services() {
   return (
-    <section id="disciplines" className="relative container-x py-16 md:py-40 md:overflow-hidden">
+    <section id="disciplines" className="relative container-x py-16 md:py-40 md:overflow-hidden" style={{ backgroundColor: "var(--color-paper)" }}>
       <div className="mx-auto max-w-[1280px] relative">
         <Marks index="R04" label="CRAFT · TIMELINE" meta="Four tracks · one sequence" />
 

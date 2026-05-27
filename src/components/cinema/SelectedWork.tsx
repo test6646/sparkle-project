@@ -297,7 +297,7 @@ export function SelectedWork() {
   const [active, setActive] = useState<Film | null>(null);
 
   return (
-    <section id="work" className="relative container-x py-24 md:py-32">
+    <section id="work" className="relative container-x py-24 md:py-32" style={{ backgroundColor: "var(--color-paper-fold)" }}>
       <div className="mx-auto max-w-[1500px]">
         <Marks index="R02" label="SELECTED WORK" meta="2023 → 2026 · 5 frames" />
 

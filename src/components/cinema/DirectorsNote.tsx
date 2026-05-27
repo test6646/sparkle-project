@@ -16,6 +16,7 @@ export function DirectorsNote() {
       style={{
         paddingTop: "clamp(48px, 6vh, 72px)",
         paddingBottom: "clamp(32px, 4vh, 56px)",
+        backgroundColor: "var(--color-paper)",
       }}
     >
       {/* ===== Backdrop — light, hero-family ===== */}
