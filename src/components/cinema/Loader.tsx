@@ -76,26 +76,13 @@ export function Loader() {
       {/* Base paper layer — same warm paper as the rest of the site */}
       <div className="absolute inset-0" style={{ background: "var(--color-paper)" }} />
 
-      {/* Match site backdrop: warm radial wash + grain noise (same SVG patterns as paper-surface/grain) */}
+      {/* Subtle warm vignette only — no heavy noise/grain */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(120% 80% at 50% 0%, rgba(255,245,220,0.35) 0%, transparent 55%), radial-gradient(100% 80% at 50% 110%, rgba(60,38,18,0.18) 0%, transparent 60%), url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='900' height='900'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0.32  0 0 0 0 0.22  0 0 0 0 0.12  0 0 0 0.18 0'/></filter><rect width='100%' height='100%' filter='url(%23f)'/></svg>\")",
-          backgroundSize: "auto, auto, 900px 900px",
-          mixBlendMode: "multiply",
-          opacity: 0.9,
-        }}
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='520' height='520'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18  0 0 0 0 0.12  0 0 0 0 0.08  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
-          backgroundSize: "520px 520px",
-          opacity: 0.18,
+            "radial-gradient(120% 80% at 50% 0%, rgba(255,245,220,0.25) 0%, transparent 55%), radial-gradient(100% 80% at 50% 110%, rgba(60,38,18,0.10) 0%, transparent 60%)",
           mixBlendMode: "multiply",
         }}
       />
