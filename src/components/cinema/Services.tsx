@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Marks } from "./Marks";
 import { Reveal } from "./Reveal";
+import { DiagramPlate } from "./DiagramPlate";
 
 
 type Clip = { in: number; out: number; label: string; tone: "ink" | "gold" | "maroon" };
