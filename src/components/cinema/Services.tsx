@@ -144,16 +144,16 @@ export function Services() {
                   <div className="relative h-[72px]">
                     <div className="absolute inset-x-0 top-1/2 h-px bg-ink/10" />
                     {t.clips.map((c, ci) => (
-                      <div
-                        key={ci}
-                        className="absolute top-1/2 -translate-y-1/2 h-[34px] overflow-hidden group cursor-default transition-transform duration-500 hover:scale-y-110"
-                        style={{
-                          left: `${c.in}%`,
-                          width: `${c.out - c.in}%`,
-                          background: toneBg[c.tone],
-                          color: c.tone === "gold" ? "#fff" : "var(--color-paper)",
-                        }}
-                      >
+                    <div
+                      key={ci}
+                      className="absolute top-1/2 -translate-y-1/2 h-[34px] overflow-hidden cursor-default"
+                      style={{
+                        left: `${c.in}%`,
+                        width: `${c.out - c.in}%`,
+                        background: toneBg[c.tone],
+                        color: c.tone === "gold" ? "#fff" : "var(--color-paper)",
+                      }}
+                    >
                         <div
                           className="absolute inset-0 opacity-30 pointer-events-none"
                           style={{
